@@ -1,5 +1,5 @@
 # dotfiles
-Such dotfilez!
+# Such dotfilez!
 
 
-Add `for f in ~/dotfiles/*; do source $f; done` to you .bash_profile or .bashrc
+# Add `for f in ~/dotfiles/*; do source $f; done` to you .bash_profile or .bashrc
