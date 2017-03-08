@@ -4,6 +4,8 @@ echo 'aliases loaded!'
 #
 #  Description:  This file holds all my BASH configurations and aliases
 #
+#  Sourced from this glorious resource: https://natelandau.com/my-mac-osx-bash_profile/
+#  
 #  Sections:
 #  1.  Environment Configuration
 #  2.  Make Terminal Better (remapping defaults and adding functionality)
@@ -53,8 +55,7 @@ echo 'aliases loaded!'
 #   -----------------------------
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
-# alias cd='cd $1*'                         # cd with partial filenames
-cd() { builtin cd $@*; }                    # Always list directory contents upon 'cd'
+cd() { builtin cd $@*; }                    # Short filename cd
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
@@ -72,6 +73,9 @@ mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and ju
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
+
+gp() { git add -A; git commit -m "upd"; git push; }  # Git add, commit, and push to repo
+# alias gp=gp
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
