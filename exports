@@ -4,9 +4,5 @@
   export PATH="/usr/local/bin:$PATH"
   export PATH="/usr/local/sbin:$PATH"
   export PATH="~/.composer/vendor/bin:$PATH"
-<<<<<<< HEAD
   export PATH="/usr/local/Cellar/php70/7.0.14_7/bin:$PATH"
-  
   echo "exports loaded!"
-=======
->>>>>>> 6e74d6c95f924563e227dd6636ef328ff2232c2b
