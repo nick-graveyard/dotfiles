@@ -58,6 +58,7 @@ eval $(thefuck --alias)
 #   2. MAKE TERMINAL BETTER
 #   -----------------------------
 
+alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 cd() { builtin cd $@*; }                    # Short filename cd
 alias mv='mv -iv'                           # Preferred 'mv' implementation
@@ -77,8 +78,14 @@ mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and ju
 trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
+alias grep='grep --color=auto'
+alias ssh_gate='ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem ubuntu@54.149.38.157'
+alias restart_nginx=' sudo systemctl restart php7.0-fpm nginx && sudo nginx -s reload && echo "nginx restarted"'
+alias db_tunn='sudo ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem -fNg -L 3306:rxauroracluster.cluster-chjxwdeew84g.us-west-2.rds.amazonaws.com:3306 ubuntu@54.149.38.157'
 
-gp() { git add -A; git commit -m "upd"; git push; }  # Git add, commit, and push to repo
+
+gp() { git add -A; git commit -m "$1"; git push; }  # Git add, commit, and push to repo
+alias git_kill='git reset --hard && git clean -fd'
 # alias gp=gp
 
 #   lr:  Full Recursive Directory Listing
