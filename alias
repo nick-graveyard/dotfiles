@@ -63,7 +63,7 @@ eval $(thefuck --alias thefuck)
 
 alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
 alias cp='cp -iv'                           # Preferred 'cp' implementation
-cd() { builtin cd $@*; }                    # Short filename cd
+cdd() { builtin cd $@*; }                    # Short filename cd
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
