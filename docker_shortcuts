@@ -1,0 +1,201 @@
+echo "docker shortcuts loaded"
+
+dls() {
+  docker ps
+}
+
+dll() {
+  docker ps -a
+}
+
+dim() {
+   docker images
+}
+
+dri() {
+  if [[ $# == 0 ]]
+    then
+      echo
+      echo "Remove which image? Provide 1 argument. Here are the images you have..."
+      echo
+      dim
+      echo
+      return 0
+  fi
+   docker rmi $1
+}
+
+# docker stop
+dsto() {
+  if [[ $# == 0 ]]
+    then
+      echo "Which container? Provide 1 argument."
+      return 0
+  fi
+  docker stop $1
+}
+
+# docker start
+dsta() {
+  if [[ $# == 0 ]]
+    then
+      echo "Which container? Provide 1 argument."
+      return 0
+  fi
+  docker start $1
+}
+
+# docker remove
+drm() {
+  if [[ $# == 0 ]]
+    then
+      echo "Which container? Provide 1 argument."
+      return 0
+  fi
+  docker rm $1
+}
+
+# docker stop all running
+dsar() {
+    if [[ $# == 0 ]]
+      then
+        docker ps | tail -n +2 |cut -d ' ' -f 1 | xargs docker stop
+    else
+        dsto $1;
+    fi
+}
+alias dstop='dsar'
+
+# docker remove all stopped
+dras() {
+    docker ps -a | tail -n +2 | grep Exited | cut -d ' ' -f 1 | xargs docker rm
+}
+
+# docker kill all
+docker-killall() {
+    dsar
+    dras
+}
+alias dka='docker-killall'
+
+
+# Docker get an ext ip
+dip() {
+  if [[ $# == 0 ]]
+    then
+      echo "Which container? Provide 1 argument."
+      return 0
+  fi
+   docker inspect --format='{{.NetworkSettings.IPAddress}}' $1
+}
+
+drun() {
+  if [[ $# == 0 ]]
+    then
+      echo "Which container? Provide 1 argument."
+      return 0
+  fi
+
+  case "$1" in
+
+    "redis" )
+        docker run -d --name redis -e APP=redis -p 6379:6379 redis:latest;;
+
+    "db" )
+      docker run -d --name db --volumes-from mysql_data -e APP=db -e MYSQL_ROOT_PASSWORD=P455w0rd -p 3306:3306 db:latest;;
+
+    "app" )
+        docker run -d --name app -e APP=app --link redis:redis --link db:db -v ~/Documents/Projects:/Projects app:latest;;
+
+    "web" )
+        docker run -d --name web -e APP=web --link app:app --link db:db --link redis:redis --volumes-from app -p 80:80 web:latest;;
+
+  esac
+
+}
+
+
+docker-enter() {
+  if [[ $# == 0 ]]
+    then
+      echo "Which container? Provide 1 argument."
+      return 0
+  fi
+
+  docker exec -ti $1 bash
+}
+alias de='docker-enter'
+
+docker-mysql() {
+   docker exec -it db sh -c 'exec mysql -uroot -p"P455w0rd"'
+}
+alias dmysql='docker-mysql'
+
+# Soft Start Docker app
+function docker-up()
+{
+    dsta db
+    dsta redis
+    dsta app
+    dsta web
+}
+alias dup='docker-up'
+
+function docker-down()
+{
+    dsto web
+    dsto app
+    dsto redis
+    dsto db
+}
+alias ddn='docker-down'
+
+function docker-reset()
+{
+    docker-down
+    docker-up
+}
+alias dre='docker-reset'
+
+function denv ()
+{
+  if [[ $# == 0 ]]
+    then
+      echo "Do you want to bring the Docker environment up or down?"
+      return 0
+  fi
+    if [[ "$1" == "up" ]]
+        then
+        echo "Bringing Up Docker Environment..."
+        dsto web
+        drm web
+        dsto app
+        drm app
+        dsto redis
+        drm redis
+        dsto db
+        drm db
+        drun db
+        drun redis
+        drun app
+        drun web
+        dll
+        echo "Done."
+    fi
+
+    if [[ "$1" == "down" ]] || [[ "$1" == "dn" ]]
+        then
+        echo "Taking Down Docker Environment..."
+        dsto web
+        drm web
+        dsto app
+        drm app
+        dsto redis
+        drm redis
+        dsto db
+        drm db
+        dll
+        echo "Done."
+    fi
+}
+

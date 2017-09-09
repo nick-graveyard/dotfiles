@@ -1,7 +1,7 @@
 echo 'aliases loaded!'
 
 
-alias composer="~/composer.phar"
+alias composer='/usr/local/bin/composer'
 
 # thefuck command
 # https://github.com/nvbn/thefuck
@@ -12,7 +12,7 @@ eval $(thefuck --alias thefuck)
 #  Description:  This file holds all my BASH configurations and aliases
 #
 #  Sourced from this glorious resource: https://natelandau.com/my-mac-osx-bash_profile/
-#  
+#
 #  Sections:
 #  1.  Environment Configuration
 #  2.  Make Terminal Better (remapping defaults and adding functionality)
@@ -61,6 +61,8 @@ eval $(thefuck --alias thefuck)
 #   2. MAKE TERMINAL BETTER
 #   -----------------------------
 
+
+#alias composer="php composer.phar" #composer shortcut
 alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 cd() { builtin cd $@*; }                    # Short filename cd
@@ -87,7 +89,9 @@ alias restart_nginx=' sudo systemctl restart php7.0-fpm nginx && sudo nginx -s r
 alias db_tunn='sudo ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem -fNg -L 3306:rxauroracluster.cluster-chjxwdeew84g.us-west-2.rds.amazonaws.com:3306 ubuntu@54.149.38.157'
 
 
+# git aliases
 gp() { git add -A; git commit -m "$1"; git push; }  # Git add, commit, and push to repo
+git_reset_cache() { git rm -r --cached .; git add -A;}
 alias git_kill='git reset --hard && git clean -fd'
 # alias gp=gp
 
