@@ -65,7 +65,8 @@ eval $(thefuck --alias thefuck)
 #alias composer="php composer.phar" #composer shortcut
 alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
 alias cp='cp -iv'                           # Preferred 'cp' implementation
-cdd() { builtin cd $@*; }                    # Short filename cd
+cd()  { builtin cd $@*; }                    # Short filename cd
+cdd() { builtin cd $@; }
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
@@ -88,12 +89,6 @@ alias ssh_gate='ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem ubuntu@54.149.
 alias restart_nginx=' sudo systemctl restart php7.0-fpm nginx && sudo nginx -s reload && echo "nginx restarted"'
 alias db_tunn='sudo ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem -fNg -L 3306:rxauroracluster.cluster-chjxwdeew84g.us-west-2.rds.amazonaws.com:3306 ubuntu@54.149.38.157'
 
-
-# git aliases
-gp() { git add -A; git commit -m "$1"; git push; }  # Git add, commit, and push to repo
-git_reset_cache() { git rm -r --cached .; git add -A;}
-alias git_kill='git reset --hard && git clean -fd'
-# alias gp=gp
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
