@@ -1,11 +1,14 @@
-echo 'aliases loaded!'
+# This is a library of helpful aliases downloaded from https://natelandau.com/my-mac-osx-bash_profile/
 
+echo 'aliases library loaded!'
 
 alias composer='/usr/local/bin/composer'
 
+alias ssh_hosts="grep -w -i 'Host' ~/.ssh/config | sed 's/Host//' "
+
 # thefuck command
 # https://github.com/nvbn/thefuck
-eval $(thefuck --alias thefuck)
+# eval $(thefuck --alias thefuck)
 
 #  ---------------------------------------------------------------------------
 #
@@ -35,10 +38,7 @@ eval $(thefuck --alias thefuck)
     # export PS1="________________________________________________________________________________\n| \w @ \h (\u) \n| => "
     # export PS2="| => "
 
-#   Set Paths
-#   ------------------------------------------------------------
-    export PATH="$PATH:/usr/local/bin/"
-    export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
+
 
 #   Set Default Editor (change 'Nano' to the editor of your choice)
 #   ------------------------------------------------------------
@@ -63,10 +63,7 @@ eval $(thefuck --alias thefuck)
 
 
 #alias composer="php composer.phar" #composer shortcut
-alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
 alias cp='cp -iv'                           # Preferred 'cp' implementation
-cd()  { builtin cd $@*; }                    # Short filename cd
-cdd() { builtin cd $@; }
 alias mv='mv -iv'                           # Preferred 'mv' implementation
 alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
@@ -85,9 +82,7 @@ trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the 
 ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias grep='grep --color=auto'
-alias ssh_gate='ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem ubuntu@54.149.38.157'
-alias restart_nginx=' sudo systemctl restart php7.0-fpm nginx && sudo nginx -s reload && echo "nginx restarted"'
-alias db_tunn='sudo ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem -fNg -L 3306:rxauroracluster.cluster-chjxwdeew84g.us-west-2.rds.amazonaws.com:3306 ubuntu@54.149.38.157'
+
 
 
 #   lr:  Full Recursive Directory Listing

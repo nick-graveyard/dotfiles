@@ -1,0 +1,24 @@
+# custom aliases
+
+# echo a random mac addy
+alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
+
+# cd shortcut to just need the first part of filename
+cd()  { builtin cd $@*; }                    # Short filename cd
+
+# backup for standard cd
+cdd() { builtin cd $@; }
+
+# ssh to rxmg gateway
+alias ssh_gate='ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem ubuntu@54.149.38.157'
+
+# restart nginx locally
+alias restart_nginx=' sudo systemctl restart php7.0-fpm nginx && sudo nginx -s reload && echo "nginx restarted"'
+
+# tunnel into remote rxmg database
+alias db_tunn='sudo ssh -o ServerAliveInterval=100 -i ~/.ssh/rxmg.pem -fNg -L 3306:rxauroracluster.cluster-chjxwdeew84g.us-west-2.rds.amazonaws.com:3306 ubuntu@54.149.38.157'
+
+# Display the current branch name in terminal in yellow in the bash prompt
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
