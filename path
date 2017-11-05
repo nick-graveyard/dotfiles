@@ -1,4 +1,6 @@
-
+# required for php 7.1
+PATH="/usr/local/sbin:$PATH"
+export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
 
 
   export PATH="/usr/local/mysql/bin:~/Library/Python/2.7/bin:~/.composer/vendor/bin:/usr/local/git/bin:$PATH"
