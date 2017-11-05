@@ -1,8 +1,39 @@
 
-  export PATH="/usr/local/git/bin:/sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:/usr/local/mysql/bin:$PATH"
-  export PATH="~/.composer/vendor/bin:$PATH"
-  export PATH="~/bin:$PATH"
-  export PATH="~/Applications/sonar/bin:$PATH"
-  export PATH="~/Library/Python/2.7/bin:$PATH"
-  export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
+
+
+  export PATH="/usr/local/mysql/bin:~/Library/Python/2.7/bin:~/.composer/vendor/bin:/usr/local/git/bin:$PATH"
+  # export PS1="\u@\h \[\033[32m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\] $ "
   echo "exports loaded!"
+
+
+
+#   Change Prompt
+#   ------------------------------------------------------------
+    # export PS1="________________________________________________________________________________\n| \w @ \h (\u) \n| => "
+    # export PS2="| => "
+
+
+
+#   Set Default Editor (change 'Nano' to the editor of your choice)
+#   ------------------------------------------------------------
+    export EDITOR=/usr/bin/nano
+
+#   Set default blocksize for ls, df, du
+#   from this: http://hints.macworld.com/comment.php?mode=view&cid=24491
+#   ------------------------------------------------------------
+    export BLOCKSIZE=1k
+
+#   Add color to terminal
+#   (this is all commented out as I use Mac Terminal Profiles)
+#   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
+#   ------------------------------------------------------------
+#   export CLICOLOR=1
+#   export LSCOLORS=ExFxBxDxCxegedabagacad
+
+
+# /sw/bin/:/usr/local/bin:/usr/local/:/usr/local/sbin:
+
+# cleans up duplicate entrys in path variable
+# https://unix.stackexchange.com/questions/14895/duplicate-entries-in-path-a-problem
+PATH=$(echo "$PATH" | awk -v RS=':' -v ORS=":" '!a[$1]++{if (NR > 1) printf ORS; printf $a[$1]}')
+
