@@ -1,7 +1,0 @@
-# other system/bash configs not alias related
-
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-
-# this is for direnv
-# https://direnv.net/
-eval "$(direnv hook bash)"
