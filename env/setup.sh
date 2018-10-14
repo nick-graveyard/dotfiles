@@ -7,3 +7,6 @@ sudo /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/i
 brew install bash
 sudo echo "/usr/local/bin/bash" >> /etc/shells
 sudo chsh -s /usr/local/bin/bash
+
+# install storm ssh
+brew install stormssh
