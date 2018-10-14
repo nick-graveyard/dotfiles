@@ -10,3 +10,6 @@ sudo chsh -s /usr/local/bin/bash
 
 # install storm ssh
 brew install stormssh
+
+# to do: virtual box, vagrant, rvm, direnv, aws-cli
+# https://docs.aws.amazon.com/cli/latest/userguide/installing.html

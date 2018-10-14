@@ -14,6 +14,7 @@ for f in $CUR_DIR/config/**; do source $f; done
 # improve terminal appearance
 
 # Display the current branch name in terminal in yellow in the bash prompt
+# https://davidwalsh.name/show-git-branch-command-line
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }

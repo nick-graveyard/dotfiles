@@ -15,7 +15,14 @@ alias git_kill=git_kill
 # echo a random mac addy
 alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
 
-
+# changes the mac address, this will be reset back to factory Mac upon reboot
+# the parameter is the interface you want to change(typically en0)
+spoof_mac(){
+    NEW_MAC=`rand_mac`
+    sudo ifconfig $1 ether $NEW_MAC
+    echo "New mac addy: $NEW_MAC"
+}
+alias spoof_mac=spoof_mac
 
 alias cp='cp -iv'                           # Preferred 'cp' implementation
 alias mv='mv -iv'                           # Preferred 'mv' implementation
@@ -61,3 +68,15 @@ extract () {
         fi
 }
 alias extract=extract
+
+
+# note :research or write a navigation library.  History, forward/backward, shortcuts, etc.
+go () {
+
+    case $1 in
+    "proj") cd /Volumes/SSD1/Projects ;;
+    "home") cd ~ ;;
+    "dotfiles") cd ~/dotfiles ;;
+    esac
+
+}
