@@ -1,0 +1,9 @@
+Host github.com
+    identityfile ~/.ssh/github
+    hostname github.com
+    user nkiermaier
+Host nick_aws
+    identityfile "/Users/admin/.ssh/nick-personal-aws.pem"
+    user ubuntu
+    hostname 34.208.204.238
+    port 22
