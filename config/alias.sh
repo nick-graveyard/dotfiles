@@ -70,13 +70,3 @@ extract () {
 alias extract=extract
 
 
-# note :research or write a navigation library.  History, forward/backward, shortcuts, etc.
-go () {
-
-    case $1 in
-    "proj") cd /Volumes/SSD1/Projects ;;
-    "home") cd ~ ;;
-    "dotfiles") cd ~/dotfiles ;;
-    esac
-
-}

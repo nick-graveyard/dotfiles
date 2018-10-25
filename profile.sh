@@ -11,6 +11,10 @@ for f in $CUR_DIR/config/**; do source $f; done
 #  brew install bash-completion
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
+# hyperjump bookmarking tool
+# https://github.com/x0054/hyperjump
+source ~/.hyperjump/hyper.sh
+
 # improve terminal appearance
 
 # Display the current branch name in terminal in yellow in the bash prompt
