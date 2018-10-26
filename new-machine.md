@@ -15,6 +15,7 @@
   - https://github.com/mutant-city/dotfiles
 - stormssh
 - aws-cli
+- jq (json cli parser)
 
 ## Gui programs
 
