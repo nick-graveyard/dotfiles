@@ -1,3 +1,7 @@
+## Note:
+
+- see ./env/setup.sh
+
 ## Bash
 
 - brew
@@ -9,6 +13,8 @@
 - node
 - dotfiles
   - https://github.com/mutant-city/dotfiles
+- stormssh
+- aws-cli
 
 ## Gui programs
 
