@@ -13,7 +13,7 @@ for f in $CUR_DIR/config/**; do source $f; done
 
 # hyperjump bookmarking tool
 # https://github.com/x0054/hyperjump
-source ~/.hyperjump/hyper.sh
+source $CUR_DIR/vendor/hyperjump/hyperjump.sh
 
 # improve terminal appearance
 
