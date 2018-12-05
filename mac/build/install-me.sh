@@ -12,9 +12,6 @@ sudo chsh -s /usr/local/bin/bash
 # installing brew
 sudo /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# install storm ssh
-brew install stormssh
-
 # composer
 # python/pip
 # node
@@ -43,6 +40,8 @@ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB8
 
 # progress bar when installing rubies
 echo progress-bar >> ~/.curlrc
+# stormssh
+brew install stormssh
 
 
 

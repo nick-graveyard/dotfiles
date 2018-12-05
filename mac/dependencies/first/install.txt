@@ -10,9 +10,6 @@ sudo chsh -s /usr/local/bin/bash
 # installing brew
 sudo /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-# install storm ssh
-brew install stormssh
-
 # composer
 # python/pip
 # node
