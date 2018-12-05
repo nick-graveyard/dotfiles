@@ -1,7 +1,9 @@
 #! /bin/bash 
 
-sudo apt update
+# yes | sudo apt upgrade
+yes | sudo apt update
 sudo apt install -y git
+
 
 sudo apt update
 sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
