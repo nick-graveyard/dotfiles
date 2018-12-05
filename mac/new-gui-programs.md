@@ -1,24 +1,5 @@
-## Note:
-
-- see ./env/setup.sh
-
-## Bash
-
-- brew
-- hyperjump
-  - https://github.com/x0054/hyperjump
-- update bash
-- composer
-- python/pip
-- node
-- dotfiles
-  - https://github.com/mutant-city/dotfiles
-- stormssh
-- aws-cli
-- jq (json cli parser)
 
 ## Gui programs
-
 - iterm
 - virtual box
 - docker

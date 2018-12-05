@@ -1,4 +1,6 @@
 # Set Up the Database if it does not exist yet
+echo "importing hyperjump"
+
 function _hyperjumpdatabase() {
     local dbdir="$HOME"/.local/lib
     local db="$dbdir"/hyperjumpdb
