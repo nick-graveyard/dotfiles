@@ -45,4 +45,6 @@ brew install stormssh
 
 
 
+storm add --id_file ~/.ssh/github  github.com nkiermaier@github.com
+storm add --id_file=/Users/admin/.ssh/nick-personal-aws.pem nick-aws ubuntu@34.208.204.238
 
