@@ -14,7 +14,9 @@ apt-cache policy docker-ce
 sudo apt install -y docker-ce
 sudo systemctl status docker
 sudo usermod -aG docker ${USER}
-su - ${USER}
+echo "Shell refresh required"
+
+sudo apt install -y git
 # hyperjumpp
 # hyperjump install not needed, is sourced
 
