@@ -1,3 +1,7 @@
+#! /bin/bash
+echo 'Sup Broski!'
+
+
 # git aliases
 
 # stages everything, commits with the parameter as the message, then pushes to the remote
@@ -70,3 +74,15 @@ extract () {
 alias extract=extract
 
 
+function cheat() {
+      curl cht.sh/$1
+}
+alias cheat=cheat
+
+
+# improve terminal appearance
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\] $ "
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+{{ vendor }}

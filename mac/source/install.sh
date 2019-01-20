@@ -1,4 +1,4 @@
-#! /bin/bash 
+#! /bin/bash
 
 # install/configure updated bash
 # https://apple.stackexchange.com/questions/193411/update-bash-to-version-4-0-on-osx
@@ -19,36 +19,11 @@ sudo /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/i
 # jq (cli json parser)
 # docker
 
-# bash completion
-brew install bash-completion
-# direnv
-brew install direnv
-brew install git
-# hyperjumpp
-# hyperjump install not needed, is sourced
-# mcfly history tool
-brew install mcfly
-# pyenv
-brew install pyenv
-# rvm - ruby version manager
-
-# key
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-
-# get rvm
-\curl -sSL https://get.rvm.io | bash
-
-# progress bar when installing rubies
-echo progress-bar >> ~/.curlrc
-# stormssh
-brew install stormssh
-
-
-
+# setup storm
 storm add --id_file ~/.ssh/github  github.com nkiermaier@github.com
 storm add --id_file=/Users/admin/.ssh/nick-personal-aws.pem nick-aws ubuntu@34.208.204.238
 
 # show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
 
-
+{{ vendor }}

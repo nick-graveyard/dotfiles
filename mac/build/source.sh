@@ -1,22 +1,117 @@
-#! /bin/bash 
-
+#! /bin/bash
 echo 'Sup Broski!'
 
+
+# git aliases
+
+# stages everything, commits with the parameter as the message, then pushes to the remote
+gp() { git add -A; git commit -m "$1"; git push; }  # Git add, commit, and push to repo
+alias gp=gp
+
+# resets a git cache, then add. Usefule for resetting .gitignore
+git_reset_cache() { git rm -r --cached .; git add -A;}
+alias git_reset_cache=git_reset_cache
+
+# resets everything to the current git branch. Note: very destructive
+alias git_kill='git reset --hard && git clean -fd'
+alias git_kill=git_kill
+
+# echo a random mac addy
+alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
+
+# changes the mac address, this will be reset back to factory Mac upon reboot
+# the parameter is the interface you want to change(typically en0)
+spoof_mac(){
+    NEW_MAC=`rand_mac`
+    sudo ifconfig $1 ether $NEW_MAC
+    echo "New mac addy: $NEW_MAC"
+}
+alias spoof_mac=spoof_mac
+
+alias cp='cp -iv'                           # Preferred 'cp' implementation
+alias mv='mv -iv'                           # Preferred 'mv' implementation
+alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
+alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
+alias less='less -FSRXc'                    # Preferred 'less' implementation
+alias edit='subl'                           # edit:         Opens any file in sublime editor
+alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+alias home="cd ~"                              # ~:            Go Home
+alias c='clear'                             # c:            Clear terminal display
+alias which='type -all'                     # which:        Find executables
+alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
+alias show_options='shopt'                  # Show_options: display bash options settings
+alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
+alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
+mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
+alias mcd=mcd
+trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
+alias trash=trash
+ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
+alias ql=ql
+alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
+alias grep='grep --color=auto'
+
+extract () {
+    if [ -f $1 ] ; then
+        case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+            esac
+        else
+            echo "'$1' is not a valid file"
+        fi
+}
+alias extract=extract
+
+
+function cheat() {
+      curl cht.sh/$1
+}
+alias cheat=cheat
+
+
+# improve terminal appearance
+export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\] $ "
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# pyenv
+echo 'importing pyenv'
+export LDFLAGS="-L/usr/local/opt/zlib/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include"
+export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
+eval "$(pyenv init -)"
+
+# this is rvm
+# Load RVM into a shell session *as a function*
+echo "importing rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+# mcfly
+echo "importing mcfly"
+if [ -f $(brew --prefix)/opt/mcfly/mcfly.bash ]; then
+  . $(brew --prefix)/opt/mcfly/mcfly.bash
+fi
+
+# this is for direnv
+# https://direnv.net/
+echo "importing dotenv"
+eval "$(direnv hook bash)"
 
 #  http://davidalger.com/development/bash-completion-on-os-x-with-brew/
 #  brew install bash-completion
 echo "importing bash completion"
 [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
-# this is for direnv
-# https://direnv.net/
-echo "importing dotenv"
-eval "$(direnv hook bash)"
-# Display the current branch name in terminal in yellow in the bash prompt
-# https://davidwalsh.name/show-git-branch-command-line
-echo "importing git branch"
-parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
 
 # Set Up the Database if it does not exist yet
 echo "importing hyperjump"
@@ -222,98 +317,12 @@ fi
 complete -F _jj jj
 complete -F _jj jf
 complete -F _jr jr
-# mcfly
-echo "importing mcfly"
-if [ -f $(brew --prefix)/opt/mcfly/mcfly.bash ]; then
-  . $(brew --prefix)/opt/mcfly/mcfly.bash
-fi
-# pyenv
-echo 'importing pyenv'
-export LDFLAGS="-L/usr/local/opt/zlib/lib"
-export CPPFLAGS="-I/usr/local/opt/zlib/include"
-export PKG_CONFIG_PATH="/usr/local/opt/zlib/lib/pkgconfig"
-eval "$(pyenv init -)"
-# this is rvm
-# Load RVM into a shell session *as a function*
-echo "importing rvm"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
-# git aliases
-
-# stages everything, commits with the parameter as the message, then pushes to the remote
-gp() { git add -A; git commit -m "$1"; git push; }  # Git add, commit, and push to repo
-alias gp=gp
-
-# resets a git cache, then add. Usefule for resetting .gitignore
-git_reset_cache() { git rm -r --cached .; git add -A;}
-alias git_reset_cache=git_reset_cache
-
-# resets everything to the current git branch. Note: very destructive
-alias git_kill='git reset --hard && git clean -fd'
-alias git_kill=git_kill
-
-# echo a random mac addy
-alias rand_mac="openssl rand -hex 6 | sed 's/\(..\)/\1:/g;s/.$//'"
-
-# changes the mac address, this will be reset back to factory Mac upon reboot
-# the parameter is the interface you want to change(typically en0)
-spoof_mac(){
-    NEW_MAC=`rand_mac`
-    sudo ifconfig $1 ether $NEW_MAC
-    echo "New mac addy: $NEW_MAC"
+# Display the current branch name in terminal in yellow in the bash prompt
+# https://davidwalsh.name/show-git-branch-command-line
+echo "importing git branch"
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-alias spoof_mac=spoof_mac
-
-alias cp='cp -iv'                           # Preferred 'cp' implementation
-alias mv='mv -iv'                           # Preferred 'mv' implementation
-alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
-alias ll='ls -FGlAhp'                       # Preferred 'ls' implementation
-alias less='less -FSRXc'                    # Preferred 'less' implementation
-alias edit='subl'                           # edit:         Opens any file in sublime editor
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-alias home="cd ~"                              # ~:            Go Home
-alias c='clear'                             # c:            Clear terminal display
-alias which='type -all'                     # which:        Find executables
-alias path='echo -e ${PATH//:/\\n}'         # path:         Echo all executable Paths
-alias show_options='shopt'                  # Show_options: display bash options settings
-alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
-alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
-mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
-alias mcd=mcd
-trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
-alias trash=trash
-ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
-alias ql=ql
-alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
-alias grep='grep --color=auto'
-
-extract () {
-    if [ -f $1 ] ; then
-        case $1 in
-        *.tar.bz2)   tar xjf $1     ;;
-        *.tar.gz)    tar xzf $1     ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar e $1     ;;
-        *.gz)        gunzip $1      ;;
-        *.tar)       tar xf $1      ;;
-        *.tbz2)      tar xjf $1     ;;
-        *.tgz)       tar xzf $1     ;;
-        *.zip)       unzip $1       ;;
-        *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1        ;;
-        *)     echo "'$1' cannot be extracted via extract()" ;;
-            esac
-        else
-            echo "'$1' is not a valid file"
-        fi
-}
-alias extract=extract
-
-
-# improve terminal appearance
-export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\] $ "
-export CLICOLOR=1
-export LSCOLORS=ExFxBxDxCxegedabagacad
-
 
 
