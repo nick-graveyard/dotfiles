@@ -88,4 +88,4 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 {{ vendor }}
 
 
-sudo chown -R $(whoami) /usr/local/Homebrew/
+chown -R $(whoami) /usr/local/Homebrew/
