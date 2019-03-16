@@ -86,3 +86,6 @@ export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
 {{ vendor }}
+
+
+sudo chown -R $(whoami) /usr/local/Homebrew/

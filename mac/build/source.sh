@@ -326,3 +326,7 @@ parse_git_branch() {
 }
 
 
+
+
+
+sudo chown -R $(whoami) /usr/local/Homebrew/

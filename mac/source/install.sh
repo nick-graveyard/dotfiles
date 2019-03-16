@@ -26,4 +26,6 @@ storm add --id_file=/Users/admin/.ssh/nick-personal-aws.pem nick-aws ubuntu@34.2
 # show hidden files
 defaults write com.apple.finder AppleShowAllFiles YES
 
+sudo pip install aws-shell
+
 {{ vendor }}
