@@ -87,5 +87,3 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 
 {{ vendor }}
 
-
-chown -R $(whoami) /usr/local/Homebrew/

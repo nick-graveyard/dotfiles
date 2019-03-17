@@ -327,6 +327,3 @@ parse_git_branch() {
 
 
 
-
-
-chown -R $(whoami) /usr/local/Homebrew/
