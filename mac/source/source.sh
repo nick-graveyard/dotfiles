@@ -50,6 +50,7 @@ ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in Ma
 alias ql=ql
 alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 alias grep='grep --color=auto'
+alias toimg='convert -font CourierNew label:@- img.png'
 
 extract () {
     if [ -f $1 ] ; then
@@ -84,6 +85,7 @@ alias cheat=cheat
 export PS1="\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[00m\]\$(parse_git_branch)\[\033[00m\] $ "
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
+
 
 {{ vendor }}
 
